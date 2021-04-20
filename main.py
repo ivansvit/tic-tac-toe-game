@@ -4,8 +4,6 @@ ticTacToeBoard = {'1': ' ', '2': ' ', '3': ' ',
                   '7': ' ', '8': ' ', '9': ' ',
                   }
 
-gameOn = True
-
 
 # Create a field game board
 def game_field(board):
@@ -22,48 +20,60 @@ def player_move(board, user_input, player_letter):
         game_field(board)
     else:
         print("Try another block.")
-        game_step(board)
-
-
-# Player input and mark the board
-def game_step(board):
-    # Player 1
-    player_one_letter = 'X'
-    player_one_input = input("Player 1, choose a block to mark. Enter number of place from 1 to 9.\n")
-    player_move(board, player_one_input, player_one_letter)
-
-    # Player 2
-    player_two_letter = 'O'
-    player_two_input = input("Player 2, choose a block to mark. Enter number of place from 1 to 9.\n")
-    player_move(board, player_two_input, player_two_letter)
+        game(board)
 
 
 # Game logic
-while gameOn:
-    if ticTacToeBoard['1'] == ticTacToeBoard['2'] == ticTacToeBoard['3'] != ' ':
-        print(f"{ticTacToeBoard['1']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['4'] == ticTacToeBoard['5'] == ticTacToeBoard['6'] != ' ':
-        print(f"{ticTacToeBoard['4']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['7'] == ticTacToeBoard['8'] == ticTacToeBoard['9'] != ' ':
-        print(f"{ticTacToeBoard['7']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['1'] == ticTacToeBoard['4'] == ticTacToeBoard['7'] != ' ':
-        print(f"{ticTacToeBoard['1']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['2'] == ticTacToeBoard['5'] == ticTacToeBoard['8'] != ' ':
-        print(f"{ticTacToeBoard['2']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['3'] == ticTacToeBoard['6'] == ticTacToeBoard['9'] != ' ':
-        print(f"{ticTacToeBoard['3']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['1'] == ticTacToeBoard['5'] == ticTacToeBoard['9'] != ' ':
-        print(f"{ticTacToeBoard['1']}, You win!!!")
-        gameOn = False
-    elif ticTacToeBoard['3'] == ticTacToeBoard['5'] == ticTacToeBoard['7'] != ' ':
-        print(f"{ticTacToeBoard['3']}, You win!!!")
-        gameOn = False
+def check_winner(board):
+    if board['1'] == board['2'] == board['3'] != ' ':
+        print(f"{board['1']}, You win!!!")
+        return False
+    elif board['4'] == board['5'] == board['6'] != ' ':
+        print(f"{board['4']}, You win!!!")
+        return False
+    elif board['7'] == board['8'] == board['9'] != ' ':
+        print(f"{board['7']}, You win!!!")
+        return False
+    elif board['1'] == board['4'] == board['7'] != ' ':
+        print(f"{board['1']}, You win!!!")
+        return False
+    elif board['2'] == board['5'] == board['8'] != ' ':
+        print(f"{board['2']}, You win!!!")
+        return False
+    elif board['3'] == board['6'] == board['9'] != ' ':
+        print(f"{board['3']}, You win!!!")
+        return False
+    elif board['1'] == board['5'] == board['9'] != ' ':
+        print(f"{board['1']}, You win!!!")
+        return False
+    elif board['3'] == board['5'] == board['7'] != ' ':
+        print(f"{board['3']}, You win!!!")
+        return False
+    else:
+        return True
 
-    if gameOn:
-        game_step(ticTacToeBoard)
+
+# Player input and mark the board
+def game(board):
+
+    game_field(board)
+    while check_winner(board):
+
+        # Player 1
+        player_one_letter = 'X'
+        player_one_input = input(f"Player {player_one_letter}, choose a block to mark. "
+                                 f"Enter a number of block from 1 to 9.\nTop-left block - 1, bottom-right - 9\n")
+        player_move(board, player_one_input, player_one_letter)
+
+        if check_winner(board):
+            # Player 2
+            player_two_letter = 'O'
+            player_two_input = input(f"Player {player_two_letter}, choose a block to mark. "
+                                     f"Enter a number of block from 1 to 9.\nTop-left block - 1, bottom-right - 9\n")
+            player_move(board, player_two_input, player_two_letter)
+
+
+game(ticTacToeBoard)
+
+# TODO Draw statement of the game
+# TODO Player X Winner double printing!
