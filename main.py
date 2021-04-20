@@ -8,7 +8,7 @@ gameOn = True
 
 
 # Create a field game board
-def gameField(board):
+def game_field(board):
     print(f" {board['1']} | {board['2']} | {board['3']} ")
     print('-----------')
     print(f" {board['4']} | {board['5']} | {board['6']} ")
@@ -16,26 +16,26 @@ def gameField(board):
     print(f" {board['7']} | {board['8']} | {board['9']} ")
 
 
-def playerMove(board, user_input, player_letter):
+def player_move(board, user_input, player_letter):
     if board[user_input] == ' ':
         board[user_input] = player_letter
-        gameField(board)
+        game_field(board)
     else:
         print("Try another block.")
-        gameStep(board)
+        game_step(board)
 
 
 # Player input and mark the board
-def gameStep(board):
+def game_step(board):
     # Player 1
     player_one_letter = 'X'
     player_one_input = input("Player 1, choose a block to mark. Enter number of place from 1 to 9.\n")
-    playerMove(board, player_one_input, player_one_letter)
+    player_move(board, player_one_input, player_one_letter)
 
     # Player 2
     player_two_letter = 'O'
     player_two_input = input("Player 2, choose a block to mark. Enter number of place from 1 to 9.\n")
-    playerMove(board, player_two_input, player_two_letter)
+    player_move(board, player_two_input, player_two_letter)
 
 
 # Game logic
@@ -66,4 +66,4 @@ while gameOn:
         gameOn = False
 
     if gameOn:
-        gameStep(ticTacToeBoard)
+        game_step(ticTacToeBoard)
