@@ -16,9 +16,9 @@ def gameField(board):
     print(f" {board['7']} | {board['8']} | {board['9']} ")
 
 
-def playerMove(board, userInput, playerLetter):
-    if board[userInput] == ' ':
-        board[userInput] = playerLetter
+def playerMove(board, user_input, player_letter):
+    if board[user_input] == ' ':
+        board[user_input] = player_letter
         gameField(board)
     else:
         print("Try another block.")
@@ -28,15 +28,14 @@ def playerMove(board, userInput, playerLetter):
 # Player input and mark the board
 def gameStep(board):
     # Player 1
-    playerOneLetter = 'X'
-    playerOneInput = input("Player 1, choose a block to mark. Enter number of place from 1 to 9.\n")
-    playerMove(board, playerOneInput, playerOneLetter)
+    player_one_letter = 'X'
+    player_one_input = input("Player 1, choose a block to mark. Enter number of place from 1 to 9.\n")
+    playerMove(board, player_one_input, player_one_letter)
 
     # Player 2
-    playerTwoLetter = 'O'
-    playerTwoInput = input("Player 2, choose a block to mark. Enter number of place from 1 to 9.\n")
-    playerMove(board, playerTwoInput, playerTwoLetter)
-
+    player_two_letter = 'O'
+    player_two_input = input("Player 2, choose a block to mark. Enter number of place from 1 to 9.\n")
+    playerMove(board, player_two_input, player_two_letter)
 
 
 # Game logic
